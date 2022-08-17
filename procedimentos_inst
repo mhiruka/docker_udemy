@@ -5,13 +5,90 @@ Uninstall older versions of Dockers, named docker or docker-engine along with as
 sudo apt-get -y remove docker.io docker-engine containerd runc
 **************************************************************
 
+
 Setup Docker Repository
 Update the repository cache.
 **************************************************************
 sudo apt-get update
 **************************************************************
 
+
 Install the below packages to ensure the apt work with https method, and that CA certificates are installed.
 **************************************************************
 sudo apt-get install -y apt-transport-https software-properties-common ca-certificates wget
+**************************************************************
+
+
+Add the GPG key for the Docker repository on your system.
+**************************************************************
+wget https://download.docker.com/linux/ubuntu/gpg 
+sudo apt-key add gpg
+**************************************************************
+
+
+Now, add the official Docker repository by running the following command in the terminal.
+**************************************************************
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" | sudo tee /etc/apt/sources.list.d/docker.list
+**************************************************************
+
+
+Update the apt database.
+**************************************************************
+sudo apt-get update
+**************************************************************
+
+
+Make sure you are installing the docker from the official repository, not from the default Ubuntu repositories.
+**************************************************************
+sudo apt-cache policy docker-ce
+**************************************************************
+
+
+You should see the output like below, should have Docker repository details.
+**************************************************************
+docker-ce:
+  Installed: (none)
+  Candidate: 5:19.03.5~3-0~ubuntu-xenial
+  Version table:
+     5:19.03.5~3-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+     5:19.03.4~3-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+     5:19.03.3~3-0~ubuntu-xenial 500
+        500 https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages
+**************************************************************
+
+
+Install Docker
+
+Now, install the Docker using the following command.
+**************************************************************
+sudo apt-get -y install docker-ce
+**************************************************************
+
+
+Now you have Docker installed on your machine, start the Docker service in case if it is not started automatically after the installation
+**************************************************************
+sudo systemctl start docker
+
+sudo systemctl enable docker
+**************************************************************
+
+Done!!! 
+
+Verify docker version
+**************************************************************
+docker -v
+**************************************************************
+
+or
+
+**************************************************************
+docker version
+**************************************************************
+
+or
+
+**************************************************************
+docker info
 **************************************************************
