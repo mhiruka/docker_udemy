@@ -1,0 +1,17 @@
+Quando houver dificuldade de instalação do Docker no Ubuntu siga os passos abaixo:
+Prerequisites
+Uninstall older versions of Dockers, named docker or docker-engine along with associated dependencies. If your system does not have a docker package, skip the below step.
+**************************************************************
+sudo apt-get -y remove docker.io docker-engine containerd runc
+**************************************************************
+
+Setup Docker Repository
+Update the repository cache.
+**************************************************************
+sudo apt-get update
+**************************************************************
+
+Install the below packages to ensure the apt work with https method, and that CA certificates are installed.
+**************************************************************
+sudo apt-get install -y apt-transport-https software-properties-common ca-certificates wget
+**************************************************************
